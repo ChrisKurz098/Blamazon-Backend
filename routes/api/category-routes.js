@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     }
   })
     .then(dbCategoryData => {
-      res.json(dbCategoryData);
+      res.status(200).json(dbCategoryData);
     }).catch(err => {
       console.log(err);
       res.status(500).json({ err: err })
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
       attributes: ['product_name']
     }
   }).then(dbCategoryData => {
-    res.json(dbCategoryData);
+    res.status(200).json(dbCategoryData);
   }).catch(err => {
     console.log(err);
     res.status(500).json({ err: err })
@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
   Category.create({
     category_name: req.body.category_name
   }).then(dbNewcategory => {
-    res.json(dbNewcategory);
+    res.status(200).json(dbNewcategory);
   }).catch(err => {
     console.log(err);
     res.status(500).json({ err: err })
@@ -83,7 +83,7 @@ router.delete('/:id', (req, res) => {
     }
   })
     .then(dbDeletedCategory => {
-      res.json(dbDeletedCategory);
+      res.status(200).json(dbDeletedCategory);
     }).catch(err => {
       console.log('Category ID not found');
       res.status(404), json({ error: 'id not found' })
