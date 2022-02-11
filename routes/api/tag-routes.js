@@ -6,11 +6,12 @@ const { Tag, Product, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   // find all tags
   // be sure to include its associated Product data
-  Product.findAll({
+  Tag.findAll({
     attributes: ['id', 'tag_name'],
     include: {
-      model: ProductTag,
-      attributes: ['product_id']
+      model: Product,
+      as: 'products',
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
     .then(dbTagData => {
@@ -24,19 +25,22 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
-  Product.findOne(
+  Tag.findOne(
+  
     {
       where: {
         id: req.params.id
+      },
+      attributes: ['id', 'tag_name'],
+      include: {
+        model: Product,
+        as: 'products',
+        attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
       }
-    },
-    {
-    attributes: ['id', 'tag_name'],
-    include: {
-      model: ProductTag,
-      attributes: ['product_id']
     }
-  })
+   
+  
+  )
     .then(dbTagData => {
       res.status(200).json(dbTagData);
     }).catch(err => {
@@ -47,9 +51,8 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
-  Tag.create({
-    tag_name: req.body.tag_name
-  }).then(dbNewTag => {
+  Tag.create(req.body)
+  .then(dbNewTag => {
     res.status(200).json(dbNewTag);
   }).catch(err => {
     console.log(err);
