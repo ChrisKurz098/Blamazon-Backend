@@ -48,7 +48,7 @@ router.get('/:id', (req, res) => {
       res.status(500).json({ err: err })
     });
 });
-
+//----------------------------------------------------------------
 router.post('/', (req, res) => {
   // create a new tag
   Tag.create(req.body)
@@ -56,10 +56,11 @@ router.post('/', (req, res) => {
     res.status(200).json(dbNewTag);
   }).catch(err => {
     console.log(err);
+    console.log(dbNewTag);
     res.status(500).json({ err: err })
   });
 });
-
+//--------------------------------------------------------------------------
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
   Tag.update(
