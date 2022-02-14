@@ -1,4 +1,4 @@
-# E-Commerce-Backend
+# Blamazon-Backend
 
 ## Description:  
 This is a backend API for an online shop. It provides basic functionality of adding, updating, removing item categories, products and tags   
