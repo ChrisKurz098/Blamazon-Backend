@@ -1,8 +1,9 @@
 # E-Commerce-Backend
 
 ## Description:  
-This is a backend API for an online shop. It provides basic functionality of adding, updating, removing item categories, products and tags
+This is a backend API for an online shop. It provides basic functionality of adding, updating, removing item categories, products and tags   
 
+![](screenshot.png)
 ## Installation:
 The app requires Node.js and SQL to be installed on the system.  
 Once both are installed:  
